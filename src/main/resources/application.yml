@@ -1,1 +1,18 @@
+spring:
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+      path: /h2-console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
 
+  jpa:
+    hibernate:
+      ddl-auto: create # 애플리케이션 실행 시점에 테이블을 drop 하고 다시 생성
+    properties:
+      hibernate:
+        show_sql: true # System.out에 하이버네이트 실행 SQL을 남김. 운영 단계에선 사용 ㄴㄴ.
+        format_sql: true
