@@ -1,8 +1,10 @@
 package com.example.dgdgbirthday.repository;
 
-import com.example.dgdgbirthday.domain.MessageEntity;
+import com.example.dgdgbirthday.domain.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MessageRepository extends JpaRepository<MessageEntity, Long> {
-    MessageEntity findByMessageId(Long messageId);
+import java.util.List;
+
+public interface MessageRepository extends JpaRepository<Message, Long> {
+    List<Message> findByReceiver_Mbti(String mbti);
 }

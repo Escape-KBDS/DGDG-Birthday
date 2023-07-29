@@ -10,6 +10,7 @@ spring:
     url: jdbc:h2:mem:testdb
 
   jpa:
+    defer-datasource-initialization: true # data.sql 초기데이터 넣기
     hibernate:
       ddl-auto: create # 애플리케이션 실행 시점에 테이블을 drop 하고 다시 생성
     properties:

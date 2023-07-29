@@ -9,17 +9,22 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "Message")
 @Data
-public class MessageEntity {
+public class Message {
 
     @Id @GeneratedValue
     private Long messageId;
-
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "member_id")
-//    private Member member;
 
     private String content;
 
     @CreationTimestamp
     private LocalDateTime writtenTime;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "email")
+    private User receiver;
+
+    public void setUser(User receiver){
+        this.receiver = receiver;
+        receiver.getReceivedMessages().add(this);
+    }
 }
