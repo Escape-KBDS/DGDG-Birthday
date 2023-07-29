@@ -24,7 +24,6 @@ public class UserController {
         return "test";
     }
 
-
     @PostMapping("/signup")
     public ResponseEntity<User> signUp(@RequestBody UserDto userDto) {
         User createdUser = userService.createUser(userDto);
