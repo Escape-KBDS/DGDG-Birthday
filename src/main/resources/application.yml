@@ -1,4 +1,7 @@
 spring:
+  config:
+    import:
+      - jwt.yml
   h2:
     console:
       enabled: true

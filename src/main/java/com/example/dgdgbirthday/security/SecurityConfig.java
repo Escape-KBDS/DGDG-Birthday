@@ -1,29 +1,28 @@
 package com.example.dgdgbirthday.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-@Configuration
+//@EnableMethodSecurity
 @EnableWebSecurity
+@RequiredArgsConstructor
+@Configuration
 public class SecurityConfig {
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;	// JwtAuthenticationFilter 주입
     private static final String[] AUTH_WHITELIST = {
-            "/signup",
+            "/",
             "/user/**",
             "/swagger-ui/**",
             "/message/send/**",
@@ -43,7 +42,10 @@ public class SecurityConfig {
                 )
                 .sessionManagement(sessionManagement ->
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                )	// 세션을 사용하지 않으므로 STATELESS 설정
+                ) // 세션을 사용하지 않으므로 STATELESS 설정
+                .addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class) // JwtAuthenticationFilter를 주입 받아 BasicAuthenticationFilter 앞에 추가함.
+//                .addFilter(jwtAuthenticationFilter) // JwtAuthenticationFilter를 주입 받아 BasicAuthenticationFilter 앞에 추가함.
+                // 스프링 시큐리티 공식 문서에서 언급하는 필터 순서 : ... → BearerTokenAuthenticationFilter → BasicAuthenticationFilter → ...
                 .build();
     }
 }
