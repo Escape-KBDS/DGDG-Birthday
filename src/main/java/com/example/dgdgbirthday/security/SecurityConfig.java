@@ -26,6 +26,8 @@ public class SecurityConfig {
             "/signup",
             "/user/**",
             "/swagger-ui/**",
+            "/message/send/**",
+            "/statistics/**",
             "/login"
     };
 
