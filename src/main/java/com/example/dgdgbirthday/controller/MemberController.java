@@ -24,6 +24,7 @@ Http 요청과 응답을 위한 클래스로서 제일 앞단이라고 볼 수 �
  */
 
 @Controller
+@RequestMapping("/member")
 @RequiredArgsConstructor
 @Slf4j
 public class MemberController {
