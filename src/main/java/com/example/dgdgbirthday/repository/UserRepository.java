@@ -1,6 +1,7 @@
 package com.example.dgdgbirthday.repository;
 
-import com.example.dgdgbirthday.domain.Member;
+import com.example.dgdgbirthday.domain.User;
+import com.example.dgdgbirthday.dto.UserDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -13,7 +14,7 @@ JpaRepository interface를 상속받아서 관리하고자 하는 클래스, ID 
 같이 넣어주면 자동으로 DB와 CRUD 연결을 할 수 있는 메소드를 생성해준다.
  */
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
-    Optional<Member> findById(String id);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email); //unique값인 email로 로그인
 
 }

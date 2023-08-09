@@ -1,25 +1,17 @@
 package com.example.dgdgbirthday.domain;
 
 
-import com.example.dgdgbirthday.dto.member.MemberRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @Entity //@Entity - 테이블과 1:1로 맵핑되는 어노테이션 [해당 어노테이션이 붙으면 JPA가 해당 클래스를 관리함]
 @Data			// Getter Setter
-@Builder		// DTO -> Entity화
-@AllArgsConstructor    // 모든 컬럼 생성자 생성
-@NoArgsConstructor    // 기본 생성자
-@Table(name = "member")
-public class Member {
+//@Builder		// DTO -> Entity화
+//@AllArgsConstructor    // 모든 컬럼 생성자 생성
+@NoArgsConstructor    // 기본 생성자 선언 * 기본생성자 비선언시 java.lang.NoSuchMethodException <init>() 에러 발생
+@Table(name = "user")
+public class User {
 
     /*
     Domain(=Entity)
@@ -41,20 +33,7 @@ public class Member {
     private String password;
     @Column(nullable = false)
     private String mbti;
-    private String roles;
 
-    public List<String> getRoleList() {
-        if (this.roles.length() > 0) {
-            return Arrays.asList(this.roles.split(","));
-        }
-        return new ArrayList<>();
-    }
 
-    public static Member from(MemberRequest request, PasswordEncoder encoder) {	// 파라미터에 PasswordEncoder 추가
-        return Member.builder()
-                .email(request.email())
-                .password(encoder.encode(request.password()))
-                .build();
-    }
 }
 

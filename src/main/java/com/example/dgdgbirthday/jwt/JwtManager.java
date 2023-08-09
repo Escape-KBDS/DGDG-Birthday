@@ -1,6 +1,6 @@
 package com.example.dgdgbirthday.jwt;
 
-import com.example.dgdgbirthday.domain.Member;
+import com.example.dgdgbirthday.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -19,15 +19,15 @@ public class JwtManager {
     /**
      * Member 정보를 담은 JWT 토큰을 생성한다.
      *
-     * @param memberEntity MemberEntity 정보를 담은 객체
+     * @param user MemberEntity 정보를 담은 객체
      * @return String JWT 토큰
      */
-    public String generateJwtToken(Member memberEntity) {
+    public String generateJwtToken(User user) {
         Date now = new Date();
         return Jwts.builder()
-                .setSubject(memberEntity.getUsername()) // 보통 username
+                .setSubject(user.getUsername()) // 보통 username
                 .setHeader(createHeader())
-                .setClaims(createClaims(memberEntity)) // 클레임, 토큰에 포함될 정보
+                .setClaims(createClaims(user)) // 클레임, 토큰에 포함될 정보
                 .setExpiration(new Date(now.getTime() + expiredTime)) // 만료일
                 .signWith(SignatureAlgorithm.HS256, securityKey)
                 .compact();
@@ -44,13 +44,12 @@ public class JwtManager {
     /**
      * 클레임(Claim)을 생성한다.
      *
-     * @param memberEntity 토큰을 생성하기 위한 계정 정보를 담은 객체
+     * @param user 토큰을 생성하기 위한 계정 정보를 담은 객체
      * @return Map<String, Object> 클레임(Claim)
      */
-    private Map<String, Object> createClaims(Member memberEntity) {
+    private Map<String, Object> createClaims(User user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("username", memberEntity.getUsername()); // username
-        claims.put("roles", memberEntity.getRoles()); // 인가정보
+        claims.put("username", user.getUsername()); // username
         return claims;
     }
 
@@ -81,7 +80,7 @@ public class JwtManager {
      * @param token JWT 토큰
      * @return Set<MemberRole> role 정보를 가지고 있는 Set
      */
-    public Set<Member> getMemberRoleSetFromToken(String token) {
-        return (Set<Member>) getClaims(token).get("roles");
+    public Set<User> getMemberRoleSetFromToken(String token) {
+        return (Set<User>) getClaims(token).get("roles");
     }
 }

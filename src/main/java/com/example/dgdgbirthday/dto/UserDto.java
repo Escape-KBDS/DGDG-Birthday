@@ -13,8 +13,9 @@ Domain과 마찬가지로 Builder 패턴을 사용할 수 있습니다.
 
 
 @Data
-public class MemberDto {
+public class UserDto {
 
+    private String id;
     private String email;
     private String username;
     private String password;
