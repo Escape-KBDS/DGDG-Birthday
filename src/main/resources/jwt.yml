@@ -1,0 +1,6 @@
+비밀키는 코드에 작성하면 공유 레포지토리에 그대로 공개되어 버리는 등의 문제가 발생할 수 있다.
+따라서 별도의 설정 파일에 분리하여 관리하는 것이 여러모로 좋다.
+
+secret-key: NiOeyFbN1Gqo10bPgUyTFsRMkJpGLXSvGP04eFqj5B30r5TcrtlSXfQ7TndvYjNvfkEKLqILn0j1SmKODO1Yw3JpBBgI3nVPEahqxeY8qbPSFGyzyEVxnl4AQcrnVneI
+expiration-hours: 3
+issuer: JIHYEON

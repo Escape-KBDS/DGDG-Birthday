@@ -1,8 +1,11 @@
 package com.example.dgdgbirthday.repository;
 
-import com.example.dgdgbirthday.domain.UserEntity;
+import com.example.dgdgbirthday.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<UserEntity,String> {
-    UserEntity findByPhonenum(String phonenum);
+import java.util.Optional;
+import java.util.UUID;
+
+public interface UserRepository extends JpaRepository<User, UUID> {
+    Optional<User> findByPhonenum(String phonenum);
 }

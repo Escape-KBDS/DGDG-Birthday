@@ -7,7 +7,9 @@ spring:
       path: /h2-console
   datasource:
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:testdb
+    url: jdbc:h2:mem:dgdg_bday
+    username: sa
+    password:
 
   jpa:
     hibernate:
@@ -16,3 +18,17 @@ spring:
       hibernate:
         show_sql: true # System.out에 하이버네이트 실행 SQL을 남김. 운영 단계에선 사용 ㄴㄴ.
         format_sql: true
+
+springdoc:
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  paths-to-match: /**
+  swagger-ui:
+    path: /
+    display-request-duration: true
+    groups-order: desc
+    operations-sorter: alpha
+    disable-swagger-default-url: true
+  api-docs:
+    groups:
+      enabled: true
