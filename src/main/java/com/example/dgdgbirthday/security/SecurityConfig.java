@@ -26,7 +26,10 @@ public class SecurityConfig {
             "/user/**",
             "/swagger-ui/**",
             "/message/send/**",
+            "/v3/api-docs/**",
+            "/swagger-resources/**",
             "/statistics/**",
+            "/error",
             "/login"
     };
 

@@ -73,8 +73,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String[] AUTH_WHITELIST = {
                 "/user/",
                 "/swagger-ui/",
+                "/h2-console",
                 "/message/send/",
                 "/statistics/",
+                "/swagger-resources/",
+                "/v3/api-docs",
+                "/error",
                 "/login"
         };
         for (String pattern : AUTH_WHITELIST) {

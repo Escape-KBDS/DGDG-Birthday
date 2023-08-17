@@ -5,6 +5,7 @@ import com.example.dgdgbirthday.dto.UserDto;
 import com.example.dgdgbirthday.service.UserService;
 import com.example.dgdgbirthday.vo.RequestLogin;
 import com.example.dgdgbirthday.vo.ResponseLogin;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@Slf4j
 public class UserController {
 
     private final UserService userService;
@@ -26,6 +28,7 @@ public class UserController {
 
     @GetMapping("/test")
     public String test(){
+        log.info("/user/test 실행");
         System.out.println(secretKey);
         return "test";
     }
